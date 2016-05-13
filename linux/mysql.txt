@@ -1,0 +1,60 @@
+
+yum安装MySQL并设置密码
+
+ 
+复制代码
+yum install mysql
+yum install mysql-server
+yum install mysql-devel
+chgrp -R mysql /var/lib/mysql
+chmod -R 770 /var/lib/mysql
+service mysqld start 
+mysql
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('secret_password');
+复制代码
+
+
+
+收工！
+
+更新
+
+如要其他机器能访问，在mysql.user中添加一个Host为'%'的user,然后flush priviledges;，最后防火墙加一句类似这样的语句即可(开通3306端口)：
+-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+
+
+
+如果要reboot自启动：
+chkconfig --levels 345 mysqld on
+
+
+修改/etc/my.cnf
+添加port=3308
+修改后如下
+[mysqld]
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+port=3308
+user=mysql
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+default-character-set=utf8
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+
+
+那么，你需要关掉selinux，不想重启服务器，而关掉selinux，使用以下命令
+
+/usr/sbin/setenforce 0 
+
+
+修改linux下mysql端口时候报错：
+
+Can't start server: Bind on TCP/IP port: Permission denied
+
+需要修改： vi /etc/selinux/config
+
+SELINUX=disabled 
+
+然后重启服务器即可

@@ -1,0 +1,5 @@
+¸²¸ÇÎÄ¼þ¼Ð
+/etc/yum.repos.d
+/etc/pki/rpm-gpg/
+
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6

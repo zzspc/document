@@ -1,0 +1,43 @@
+yum install nginx
+yum install php
+yum install php-gd php-bcmath php-fpm php-mysql php-mbstring
+
+
+
+# /etc/init.d/php-fpm start
+service php-fpm start
+service nginx start
+
+
+#/etc/nginx/
+server {
+        listen       8000;
+        server_name  webservice.vcivc.cn;
+        location / {
+            root   /wwwroot/nginx_www/user_center/public;
+            index  index.php index.html index.htm;
+			try_files $uri $uri/ /index.php?$query_string;
+			
+			 if (!-e $request_filename) {
+				rewrite ^/(.*)$ /index.php/$1 last;
+			}
+        }		
+		location ~ \.php  {
+			root           /wwwroot/nginx_www/user_center/public;
+			fastcgi_pass   127.0.0.1:9000;
+			
+			
+			
+            fastcgi_index  index.php;
+			fastcgi_split_path_info    ^(.+\.php)(/.+)$; 
+			fastcgi_param PATH_INFO    $fastcgi_path_info; 		
+			
+			fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info; 
+			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; 	
+			include        fastcgi_params;					
+            	
+        }
+        location ~ /\.ht {
+            deny  all;
+        }
+    }
