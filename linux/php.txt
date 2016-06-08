@@ -1,0 +1,26 @@
+yum install php
+yum install php-gd php-bcmath php-fpm php-mysql php-mbstring php-devel
+
+
+
+# /etc/init.d/php-fpm start
+service php-fpm start
+
+
+
+编译安装php7的redis扩展支持
+
+
+wget -c https://github.com/phpredis/phpredis/archive/php7.zip
+unzip php7.zip
+
+
+whereis phpize
+
+cd phpredis-php7
+phpize
+./configure
+#/usr/local/php7/bin/phpize
+#./configure --with-php-config=/usr/local/php7/bin/php-config
+make
+make install

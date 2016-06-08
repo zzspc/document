@@ -1,0 +1,74 @@
+在编译php7的机器上已经有编译安装过php5.3以上的版本,从而依赖库都有了
+
+本php7是编译成fpm-php 使用的,
+
+如果是apache那么编译参数应该为
+
+--with-apxs2=/usr/local/apache/bin/apxs
+编译安装php7
+
+wget -c http://www.php.net/distributions/php-7.0.0.tar.gz
+tar zxvf php-7.0.0.tar.gz
+cd php-7.0.0
+
+./configure \
+--prefix=/usr/local/php7 \
+--with-config-file-path=/usr/local/php7/etc \
+--enable-fpm \
+--with-fpm-user=www \
+--with-fpm-group=www \
+--with-mysqli=mysqlnd \
+--with-pdo-mysql=mysqlnd \
+--with-iconv-dir \
+--with-freetype-dir=/usr/local/freetype \
+--with-jpeg-dir -\
+-with-png-dir \
+--with-zlib \
+--with-libxml-dir=/usr \
+--enable-xml \
+--disable-rpath \
+--enable-bcmath \
+--enable-shmop \
+--enable-sysvsem \
+--enable-inline-optimization \
+--with-curl \
+--enable-mbregex \
+--enable-mbstring \
+--with-mcrypt \
+--enable-ftp \
+--with-gd \
+--enable-gd-native-ttf \
+--with-openssl \
+--with-mhash \
+--enable-pcntl \
+--enable-sockets \
+--with-xmlrpc \
+--enable-zip \
+--enable-soap \
+--with-gettext \
+--disable-fileinfo \
+--enable-opcache
+
+make ZEND_EXTRA_LIBS='-liconv'
+
+make install
+
+cp php.ini-production /usr/local/php7/etc/php.ini
+
+cd ..
+编译安装php7的redis扩展支持
+
+
+wget -c https://github.com/phpredis/phpredis/archive/php7.zip
+unzip php7.zip
+
+cd phpredis-php7
+/usr/local/php7/bin/phpize
+./configure --with-php-config=/usr/local/php7/bin/php-config
+make
+make install
+cd ..
+
+/usr/local/php7/etc/php.ini
+中加入
+extension=redis.so

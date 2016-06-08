@@ -1,11 +1,5 @@
 yum install nginx
-yum install php
-yum install php-gd php-bcmath php-fpm php-mysql php-mbstring
 
-
-
-# /etc/init.d/php-fpm start
-service php-fpm start
 service nginx start
 
 
