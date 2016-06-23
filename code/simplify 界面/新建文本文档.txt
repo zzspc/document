@@ -1,0 +1,3 @@
+<Directory "D:/APMServ/www/htdocs">
+php_admin_value open_basedir "D:/APMServ/www/htdocs;D:/APMServ/tmp/uploadtemp/;C:/WINDOWS/TEMP/"
+</Directory>

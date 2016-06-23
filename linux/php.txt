@@ -1,5 +1,5 @@
 yum install php
-yum install php-gd php-bcmath php-fpm php-mysql php-mbstring php-devel
+yum install php-gd php-bcmath php-fpm php-mysql php-mbstring php-devel  php-xml
 
 
 
@@ -24,3 +24,16 @@ phpize
 #./configure --with-php-config=/usr/local/php7/bin/php-config
 make
 make install
+
+
+/etc/php.ini
+中加入
+extension=redis.so
+
+
+
+安装phpunit
+$ wget https://phar.phpunit.de/phpunit.phar
+$ chmod +x phpunit.phar
+$ sudo mv phpunit.phar /usr/local/bin/phpunit
+$ phpunit --version

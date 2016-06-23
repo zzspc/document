@@ -60,3 +60,41 @@ Can't start server: Bind on TCP/IP port: Permission denied
 SELINUX=disabled 
 
 然后重启服务器即可
+
+
+
+
+
+Install MySQL Server 5.6 on CentOS 7 / RHEL 7
+
+Follow the given below steps to install MySQL Server 5.6 .
+You must be login with root user in system
+
+Download the Yum Repo package of MySQL Server 5.6
+
+Download the rpm package, which will create a yum repo file for MySQL Server installation.
+
+yum install wget
+wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+Install mysql-community-release-el7-5.noarch.rpm package
+
+Install this downloaded rpm package by using rpm command.
+
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
+After the installation of this package. We will get two new yum repo related to MySQL
+
+[root@localhost ~]# ls -1 /etc/yum.repos.d/mysql-community*
+/etc/yum.repos.d/mysql-community.repo
+/etc/yum.repos.d/mysql-community-source.repo
+[root@localhost ~]#
+Installing MySQL Server
+
+By using yum command, now we will install MySQL Server 5.6 . All dependencies will be installed itself.
+
+yum install mysql-server
+How to start/stop/restart MySQL Server
+
+Now MySQL Server is installed on your system.
+
+
+systemctl enable iptables.service
