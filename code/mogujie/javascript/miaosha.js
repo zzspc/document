@@ -240,6 +240,8 @@ function miaosha(reload){
             case '红楼梦作者是？':
             	answer.value = '曹雪芹';
             	break;
+			case '上有天堂下一句是什么？':
+				answer.value='下有苏杭';
             default:
                 cosole.log('找到未设置问题：'+ question);
                 break;
