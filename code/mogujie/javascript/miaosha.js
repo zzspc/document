@@ -1,5 +1,4 @@
 var reLoad = $(".buy-refresh");
-
 if(reLoad.length > 0)
 {
     console.log('进入倒计时 启动秒杀程序');
@@ -111,7 +110,7 @@ function miaosha(reload){
             case '浙江的省会城市是哪里？':
             	answer.value = '杭州';
             	break;
-            case '上有天堂的下半句是什么？（四个字）':
+            case '上有天堂的下半句是什么？（4个字）':
             	answer.value = '下有苏杭';
             	break;
             case '中国实行多少年的免费义务教育制度？（答案仅填写阿拉伯数字）':
